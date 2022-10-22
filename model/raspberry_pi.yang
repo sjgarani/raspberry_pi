@@ -1,0 +1,32 @@
+module raspberry_pi {
+    namespace "urn:sysrepo:raspberry_pi";
+    prefix rpi;
+
+    revision 2022-10-19 {
+        description "Raspberry Pi 3 Model B+";
+    }
+
+    typedef led-status {
+        description "Led Status";
+        type enumeration {
+            enum off {
+                description "Led Off";
+            }
+            enum on {
+                description "Led On";
+            }
+            enum blink {
+                description "Led blink";
+            }
+        }
+    }
+
+    container leds {
+        description "Configuration container of the leds.";
+        leaf led {
+            description "Main switch determining whether the led is on or off.";
+            type led-status;
+            default off;
+        }
+    }
+}
