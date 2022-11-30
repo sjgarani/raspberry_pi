@@ -84,3 +84,14 @@ RUN git clone https://github.com/sysrepo/sysrepo-cpp.git && \
     make install && \
     cd ../.. && \
     rm sysrepo-cpp -r
+
+WORKDIR /
+
+COPY files/start.sh start.sh
+COPY model/raspberry_pi.yang /opt/raspberry_pi.yang
+
+RUN chmod +x start.sh
+
+ENV LD_LIBRARY_PATH /usr/local/lib
+
+CMD [ "./start.sh" ]
